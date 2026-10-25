@@ -119,7 +119,7 @@ async function route(request, env) {
       return json({ digest, permalink: `/digest/${digest.id}` });
     }
     return json({ error: "Not found" }, 404);
-  } catch (error) { return json({ error: error.message }, 400); }
+  } catch (error) { return json({ error: error.message, code: error.code || "REQUEST_FAILED" }, error.status || 400); }
 }
 
 export default { fetch: route, scheduled: (_event, env, context) => context.waitUntil(dispatch(env)) };

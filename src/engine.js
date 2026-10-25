@@ -1,5 +1,5 @@
 const ZERO = "0x0000000000000000000000000000000000000000";
-export const ENGINE_VERSION = "weekly-digest/1.0.0";
+export const ENGINE_VERSION = "weekly-digest/1.0.1-exact-indexer-amounts";
 
 export function normalizeAddress(value) {
   if (typeof value !== "string" || !/^0x[a-fA-F0-9]{40}$/.test(value)) throw new Error("A valid public EVM wallet address is required.");
@@ -36,11 +36,36 @@ export function nextRun(config, from = new Date()) {
   return result.toISOString();
 }
 
+export class SourceDataError extends Error { constructor(message) { super(message); this.name = "SourceDataError"; this.code = "SOURCE_DATA_FAILURE"; this.status = 502; } }
+function rawInteger(input, field) {
+  if (typeof input === "bigint") return input.toString();
+  if (typeof input === "number") { if (!Number.isSafeInteger(input) || input < 0) throw new SourceDataError(`${field} must be a non-negative exact integer.`); return String(input); }
+  if (typeof input !== "string") throw new SourceDataError(`${field} is missing or is not an exact integer representation.`);
+  const text = input.trim();
+  if (/^\d+$/.test(text)) return BigInt(text).toString();
+  if (/^0x[0-9a-f]+$/i.test(text)) return BigInt(text).toString();
+  throw new SourceDataError(`${field} is not a supported decimal or hexadecimal integer representation.`);
+}
+export function decimalUnitsToRaw(input, decimals, field = "value") {
+  if (typeof input !== "string" || !/^\d+(?:\.\d+)?$/.test(input.trim())) throw new SourceDataError(`${field} is not a supported non-negative decimal string.`);
+  if (!Number.isInteger(decimals) || decimals < 0 || decimals > 36) throw new SourceDataError(`${field} cannot be normalized because token decimals are unavailable or invalid.`);
+  const [whole, fraction = ""] = input.trim().split(".");
+  if (fraction.length > decimals) throw new SourceDataError(`${field} has ${fraction.length} fractional digits, exceeding token decimals ${decimals}.`);
+  return BigInt(whole + fraction.padEnd(decimals, "0")).toString();
+}
 export function normalizeTransfer(value) {
-  const from = normalizeAddress(value.from_address || value.from), to = normalizeAddress(value.to_address || value.to), token = normalizeAddress(value.token_address || value.address), raw = String(value.value_raw ?? value.value ?? value.amount_raw);
-  if (!/^\d+$/.test(raw)) throw new Error("Malformed transfer amount.");
-  const decimals = value.token_decimals == null ? null : Number(value.token_decimals), transactionHash = String(value.transaction_hash || value.transactionHash).toLowerCase(), logIndex = Number(value.log_index ?? value.logIndex), timestamp = new Date(value.block_timestamp || Number(value.timestamp || value.timeStamp) * 1000);
+  const from = normalizeAddress(value.from_address || value.from), to = normalizeAddress(value.to_address || value.to), token = normalizeAddress(value.token_address || value.address);
+  const decimalsValue = value.token_decimals ?? value.decimals ?? value.token_info?.decimals, decimals = decimalsValue == null ? null : Number(decimalsValue), transactionHash = String(value.transaction_hash || value.transactionHash).toLowerCase(), logIndex = Number(value.log_index ?? value.logIndex), timestamp = new Date(value.block_timestamp || Number(value.timestamp || value.timeStamp) * 1000);
   if (!/^0x[a-f0-9]{64}$/.test(transactionHash) || !Number.isInteger(logIndex) || !Number.isFinite(+timestamp)) throw new Error("Malformed indexed transfer.");
+  let raw;
+  try {
+    if (value.value_raw != null) raw = rawInteger(value.value_raw, "value_raw");
+    else if (value.amount_raw != null) raw = rawInteger(value.amount_raw, "amount_raw");
+    else raw = decimalUnitsToRaw(value.value ?? value.amount, decimals, value.value != null ? "value" : "amount");
+  } catch (error) {
+    if (error instanceof SourceDataError) throw new SourceDataError(`Indexer transfer ${transactionHash}:${logIndex} ${error.message}`);
+    throw error;
+  }
   return { id: `1672:${transactionHash}:${logIndex}`, observationId: `obs:1672:${transactionHash}:${logIndex}`, transactionHash, logIndex, blockNumber: Number(value.block_number || value.blockNumber), timestamp: timestamp.toISOString(), from, to, token, symbol: String(value.token_symbol || value.symbol || "UNKNOWN"), decimals: Number.isInteger(decimals) && decimals >= 0 && decimals <= 36 ? decimals : null, amountRaw: raw };
 }
 

@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-10-25T21:27:01.270Z",
+  "manual": {
+    "permalink": "/digest/4c4c7f24-d985-441a-92b5-61ad5782f427",
+    "coverage": "PARTIAL"
+  },
+  "scheduled": {
+    "permalink": "/digest/43f5ac5b-79ae-4fab-8a7c-18e809037a7a",
+    "dueAt": "2026-10-25T21:26:00.000Z",
+    "startedAt": "2026-10-25T21:26:25.015Z",
+    "completedAt": "2026-10-25T21:26:55.339Z",
+    "latenessMs": 25015,
+    "coverage": "PARTIAL"
+  },
+  "transactionsPerformed": 0
+}

@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "inspectedAt": "2026-10-26T00:00:00+03:30",
+  "endpoint": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=1&size=50",
+  "record": {
+    "transaction_hash": "0x3ef290a21df7fb3a56d640fb13c9ec4bfaff21588c2a6482272a57954334562e",
+    "log_index": 4,
+    "value": "190.859681",
+    "token_address": "0xc879c018db60520f4355c26ed1a6d572cdac1815",
+    "block_number": 21246747,
+    "block_timestamp": "2026-10-25T20:14:36+00:00",
+    "token_info": { "symbol": "USDC", "decimals": 6 }
+  },
+  "exactRawResult": "190859681",
+  "finding": "SocialScan value is a human-decimal string. The previous implementation incorrectly treated it as an already-raw integer.",
+  "transactionsPerformed": 0
+}

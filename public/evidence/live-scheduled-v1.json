@@ -1,0 +1,293 @@
+{
+  "capturedAt": "2026-10-25T21:27:01.268Z",
+  "base": "https://pharos-weekly-digest-agent.shoupeorg.workers.dev",
+  "subscriptionId": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+  "state": {
+    "subscription": {
+      "id": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+      "capability_hash": "1f57c0ef65622e4ffcf5ad778de2a990ab7b91d74f49b418741ad75453d9c7e9",
+      "wallet": "0x15ddce897d76ac39c188ade4d353711a60395315",
+      "label": "Verified scheduler example [USER-SUPPLIED]",
+      "cadence": "demo",
+      "weekday": null,
+      "utc_hour": 0,
+      "utc_minute": 0,
+      "status": "ACTIVE",
+      "next_due_at": "2026-10-25T21:28:00.000Z",
+      "last_due_at": "2026-10-25T21:26:00.000Z",
+      "created_at": "2026-10-25T21:24:22.945Z",
+      "updated_at": "2026-10-25T21:26:24.962Z"
+    },
+    "jobs": [
+      {
+        "id": "4d367710-77ce-4fd7-bc97-44bf20ba7755",
+        "subscription_id": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+        "idempotency_key": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1:2026-10-12T00:00:00.000Z:2026-10-19T00:00:00.000Z:DEMO SCHEDULE",
+        "kind": "DEMO SCHEDULE",
+        "period_start": "2026-10-12T00:00:00.000Z",
+        "period_end": "2026-10-19T00:00:00.000Z",
+        "comparison_start": "2026-10-05T00:00:00.000Z",
+        "status": "PUBLISHED",
+        "due_at": "2026-10-25T21:26:00.000Z",
+        "started_at": "2026-10-25T21:26:25.015Z",
+        "completed_at": "2026-10-25T21:26:55.339Z",
+        "lease_until": null,
+        "error": null,
+        "created_at": "2026-10-25T21:26:24.888Z"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "7a57e7ad-ee4f-4459-a39b-14d2c664889d",
+        "subscription_id": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+        "job_id": "4d367710-77ce-4fd7-bc97-44bf20ba7755",
+        "digest_id": "43f5ac5b-79ae-4fab-8a7c-18e809037a7a",
+        "due_at": "2026-10-25T21:26:00.000Z",
+        "started_at": "2026-10-25T21:26:25.015Z",
+        "completed_at": "2026-10-25T21:26:55.339Z",
+        "published_at": "2026-10-25T21:26:55.339Z",
+        "lateness_ms": 25015,
+        "permalink": "/digest/43f5ac5b-79ae-4fab-8a7c-18e809037a7a"
+      }
+    ]
+  },
+  "delivery": {
+    "id": "7a57e7ad-ee4f-4459-a39b-14d2c664889d",
+    "subscription_id": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+    "job_id": "4d367710-77ce-4fd7-bc97-44bf20ba7755",
+    "digest_id": "43f5ac5b-79ae-4fab-8a7c-18e809037a7a",
+    "due_at": "2026-10-25T21:26:00.000Z",
+    "started_at": "2026-10-25T21:26:25.015Z",
+    "completed_at": "2026-10-25T21:26:55.339Z",
+    "published_at": "2026-10-25T21:26:55.339Z",
+    "lateness_ms": 25015,
+    "permalink": "/digest/43f5ac5b-79ae-4fab-8a7c-18e809037a7a"
+  },
+  "digest": {
+    "id": "43f5ac5b-79ae-4fab-8a7c-18e809037a7a",
+    "engineVersion": "weekly-digest/1.0.1-exact-indexer-amounts",
+    "wallet": "0x15ddce897d76ac39c188ade4d353711a60395315",
+    "label": "Verified scheduler example [USER-SUPPLIED]",
+    "labelSource": "USER_SUPPLIED",
+    "kind": "DEMO SCHEDULE",
+    "periods": {
+      "kind": "DEMO SCHEDULE",
+      "current": {
+        "start": "2026-10-12T00:00:00.000Z",
+        "end": "2026-10-19T00:00:00.000Z"
+      },
+      "previous": {
+        "start": "2026-10-05T00:00:00.000Z",
+        "end": "2026-10-12T00:00:00.000Z"
+      }
+    },
+    "generatedAt": "2026-10-25T21:26:55.339Z",
+    "publishedAt": "2026-10-25T21:26:55.339Z",
+    "coverage": {
+      "status": "PARTIAL",
+      "note": "Stopped at the configured 30-page resource bound before proving the full interval.",
+      "transport": "SocialScan public explorer API; Pharos JSON-RPC for timestamp/block boundaries",
+      "requests": [
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=1&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=2&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=3&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=4&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=5&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=6&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=7&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=8&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=9&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=10&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=11&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=12&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=13&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=14&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=15&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=16&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=17&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=18&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=19&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=20&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=21&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=22&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=23&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=24&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=25&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=26&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=27&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=28&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=29&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        },
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x15ddce897d76ac39c188ade4d353711a60395315/token_transfers?type=tokentxns&page=30&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        }
+      ],
+      "pages": 30,
+      "blockBoundaries": {
+        "previousStartBlock": 19397642,
+        "currentStartBlock": 20009079,
+        "currentEndBlock": 20610967
+      },
+      "intervalSemantics": "start inclusive, end exclusive",
+      "mcpParticipation": "Official Pharos Chain MCP verified chain 1672 and bounded tool capabilities during foundation; production reads use the named indexer and JSON-RPC directly."
+    },
+    "metrics": {
+      "uniqueTransactions": {
+        "current": 0,
+        "previous": 0,
+        "absolute": null,
+        "percentage": null,
+        "label": "UNKNOWN"
+      },
+      "transferEvents": {
+        "current": 0,
+        "previous": 0,
+        "absolute": null,
+        "percentage": null,
+        "label": "UNKNOWN"
+      },
+      "activeDays": {
+        "current": 0,
+        "previous": 0,
+        "absolute": null,
+        "percentage": null,
+        "label": "UNKNOWN"
+      },
+      "tokens": {}
+    },
+    "topEvents": [],
+    "observations": [],
+    "limitations": [
+      "Standard ERC-20 Transfer events only.",
+      "Token amounts are never combined across assets.",
+      "Labels are user-supplied unless a source is shown.",
+      "Incomplete indexer coverage makes comparisons LIMITED or NOT COMPARABLE."
+    ],
+    "schedule": {
+      "subscriptionId": "a2e6bcdf-c0bf-4e06-b42a-544e44a101b1",
+      "jobId": "4d367710-77ce-4fd7-bc97-44bf20ba7755",
+      "dueAt": "2026-10-25T21:26:00.000Z",
+      "actualStart": "2026-10-25T21:26:25.015Z",
+      "completedAt": "2026-10-25T21:26:55.339Z",
+      "latenessMs": 25015,
+      "trigger": "DEMO SCHEDULE"
+    }
+  }
+}
