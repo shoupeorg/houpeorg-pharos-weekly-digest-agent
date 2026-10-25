@@ -1,0 +1,168 @@
+{
+  "capturedAt": "2026-10-25T23:32:45.985Z",
+  "base": "https://pharos-weekly-digest-agent.shoupeorg.workers.dev",
+  "permalink": "/digest/e27f9046-eeae-4115-a948-a7b2a547288e",
+  "digest": {
+    "id": "e27f9046-eeae-4115-a948-a7b2a547288e",
+    "engineVersion": "weekly-digest/1.0.2-coverage-proof",
+    "wallet": "0x197afc201b8d839288d7a7e9a03fb95669e3b0f3",
+    "label": "Coverage-corrected historical example v1.1 [USER-SUPPLIED]",
+    "labelSource": "USER_SUPPLIED",
+    "kind": "MANUAL / HISTORICAL",
+    "periods": {
+      "kind": "MANUAL / HISTORICAL",
+      "current": {
+        "start": "2026-10-12T00:00:00.000Z",
+        "end": "2026-10-19T00:00:00.000Z"
+      },
+      "previous": {
+        "start": "2026-10-05T00:00:00.000Z",
+        "end": "2026-10-12T00:00:00.000Z"
+      }
+    },
+    "generatedAt": "2026-10-25T23:32:47.122Z",
+    "publishedAt": "2026-10-25T23:32:47.122Z",
+    "coverage": {
+      "status": "COMPLETE",
+      "note": "Indexer pagination reached the interval boundary or exhausted the wallet history.",
+      "transport": "SocialScan public explorer API; Pharos JSON-RPC for timestamp/block boundaries",
+      "requests": [
+        {
+          "url": "https://api.socialscan.io/pharos-mainnet/v1/explorer/address/0x197afc201b8d839288d7a7e9a03fb95669e3b0f3/token_transfers?type=tokentxns&page=1&size=50",
+          "status": 200,
+          "contentType": "application/json"
+        }
+      ],
+      "pages": 1,
+      "scannedRows": 50,
+      "uniqueRows": 50,
+      "totalReported": 59,
+      "oldestObservedAt": "2026-06-13T09:51:49.000Z",
+      "newestObservedAt": "2026-10-22T14:24:59.000Z",
+      "requestedInterval": {
+        "start": "2026-10-05T00:00:00.000Z",
+        "end": "2026-10-19T00:00:00.000Z"
+      },
+      "blockBoundaries": {
+        "previousStartBlock": 19397642,
+        "currentStartBlock": 20009079,
+        "currentEndBlock": 20610967
+      },
+      "intervalSemantics": "start inclusive, end exclusive",
+      "mcpParticipation": "Official Pharos Chain MCP verified chain 1672 and bounded tool capabilities during foundation; production reads use the named indexer and JSON-RPC directly."
+    },
+    "metrics": {
+      "uniqueTransactions": {
+        "current": 1,
+        "previous": 1,
+        "absolute": 0,
+        "percentage": 0,
+        "label": "COMPARABLE"
+      },
+      "transferEvents": {
+        "current": 1,
+        "previous": 1,
+        "absolute": 0,
+        "percentage": 0,
+        "label": "COMPARABLE"
+      },
+      "activeDays": {
+        "current": 1,
+        "previous": 1,
+        "absolute": 0,
+        "percentage": 0,
+        "label": "COMPARABLE"
+      },
+      "tokens": {
+        "0xc879c018db60520f4355c26ed1a6d572cdac1815": {
+          "token": "0xc879c018db60520f4355c26ed1a6d572cdac1815",
+          "symbol": "USDC",
+          "decimals": 6,
+          "received": {
+            "current": "115052",
+            "previous": "115052",
+            "absolute": "0",
+            "percentage": 0,
+            "label": "COMPARABLE"
+          },
+          "sent": {
+            "current": "0",
+            "previous": "0",
+            "absolute": "0",
+            "percentage": 0,
+            "label": "NO CHANGE"
+          },
+          "net": {
+            "currentRaw": "115052",
+            "previousRaw": "115052",
+            "absoluteRaw": "0",
+            "label": "COMPARABLE"
+          }
+        }
+      }
+    },
+    "topEvents": [
+      {
+        "transactionHash": "0x31d80fd20138db65a8cb6793850ef61eefe3451c795c3c6e17596ba18ccbfbf6",
+        "timestamp": "2026-10-15T09:35:33.000Z",
+        "blockNumber": 20296009,
+        "token": "0xc879c018db60520f4355c26ed1a6d572cdac1815",
+        "symbol": "USDC",
+        "amountRaw": "115052",
+        "amount": "0.115052",
+        "from": "0xef8557f32b659969b9637caa6e427bafcf57d183",
+        "to": "0x197afc201b8d839288d7a7e9a03fb95669e3b0f3",
+        "direction": "RECEIVED",
+        "why": "Largest observed transfer for this asset in the current period; assets are not ranked against one another.",
+        "observationIds": [
+          "obs:1672:0x31d80fd20138db65a8cb6793850ef61eefe3451c795c3c6e17596ba18ccbfbf6:10"
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "id": "1672:0x31d80fd20138db65a8cb6793850ef61eefe3451c795c3c6e17596ba18ccbfbf6:10",
+        "observationId": "obs:1672:0x31d80fd20138db65a8cb6793850ef61eefe3451c795c3c6e17596ba18ccbfbf6:10",
+        "transactionHash": "0x31d80fd20138db65a8cb6793850ef61eefe3451c795c3c6e17596ba18ccbfbf6",
+        "logIndex": 10,
+        "blockNumber": 20296009,
+        "timestamp": "2026-10-15T09:35:33.000Z",
+        "from": "0xef8557f32b659969b9637caa6e427bafcf57d183",
+        "to": "0x197afc201b8d839288d7a7e9a03fb95669e3b0f3",
+        "token": "0xc879c018db60520f4355c26ed1a6d572cdac1815",
+        "symbol": "USDC",
+        "decimals": 6,
+        "amountRaw": "115052"
+      },
+      {
+        "id": "1672:0x9b2dbc3932d93d7375999e4263d59915edb4cc6230ddc839acbc4532d62dea24:6",
+        "observationId": "obs:1672:0x9b2dbc3932d93d7375999e4263d59915edb4cc6230ddc839acbc4532d62dea24:6",
+        "transactionHash": "0x9b2dbc3932d93d7375999e4263d59915edb4cc6230ddc839acbc4532d62dea24",
+        "logIndex": 6,
+        "blockNumber": 19677511,
+        "timestamp": "2026-10-08T05:40:00.000Z",
+        "from": "0xef8557f32b659969b9637caa6e427bafcf57d183",
+        "to": "0x197afc201b8d839288d7a7e9a03fb95669e3b0f3",
+        "token": "0xc879c018db60520f4355c26ed1a6d572cdac1815",
+        "symbol": "USDC",
+        "decimals": 6,
+        "amountRaw": "115052"
+      }
+    ],
+    "limitations": [
+      "Standard ERC-20 Transfer events only.",
+      "Token amounts are never combined across assets.",
+      "Labels are user-supplied unless a source is shown.",
+      "Incomplete indexer coverage makes comparisons LIMITED or NOT COMPARABLE."
+    ],
+    "schedule": {
+      "subscriptionId": "468853bc-6b0e-4841-8492-ab2dd4780a36",
+      "jobId": "b677a3b5-a275-4bed-954f-9d7b76760e66",
+      "dueAt": "2026-10-25T23:32:29.477Z",
+      "actualStart": "2026-10-25T23:32:29.523Z",
+      "completedAt": "2026-10-25T23:32:47.122Z",
+      "latenessMs": 46,
+      "trigger": "MANUAL / HISTORICAL"
+    }
+  }
+}

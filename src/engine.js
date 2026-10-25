@@ -1,5 +1,5 @@
 const ZERO = "0x0000000000000000000000000000000000000000";
-export const ENGINE_VERSION = "weekly-digest/1.0.1-exact-indexer-amounts";
+export const ENGINE_VERSION = "weekly-digest/1.0.2-coverage-proof";
 
 export function normalizeAddress(value) {
   if (typeof value !== "string" || !/^0x[a-fA-F0-9]{40}$/.test(value)) throw new Error("A valid public EVM wallet address is required.");

@@ -15,7 +15,9 @@ An English-only, read-only Pharos Pacific Mainnet agent that compares two comple
 
 The source is standard ERC-20 `Transfer` activity returned by the configured SocialScan public explorer endpoint. Pharos JSON-RPC verifies chain ID 1672 and maps UTC timestamps to exact block boundaries by binary search. Every observation is identified by `chainId:transactionHash:logIndex`; duplicate records and self-transfers do not inflate token flow. Amounts remain decimal strings/`BigInt` until display, and assets are never combined.
 
-Coverage is `COMPLETE` only when pagination reaches the requested interval boundary. A configured page cap, malformed response, timeout, or HTTP error is never interpreted as zero activity. Percent changes use an explicit `NEW ACTIVITY` state when the prior value is zero and `NO CHANGE` when both are zero.
+Coverage is `COMPLETE` only when pagination reaches the requested interval boundary or exhausts the source-reported wallet history. Reports retain requested boundaries, page count, raw/unique rows scanned, source total, and oldest/newest observed timestamps. A configured page cap, malformed response, timeout, or HTTP error is never interpreted as zero activity. Percent changes use an explicit `NEW ACTIVITY` state when the prior value is zero and `NO CHANGE` when both are zero.
+
+The version-1 evidence for the high-volume wallet is intentionally preserved as historical `PARTIAL` evidence: 1,500 records still ended after the requested periods, so its comparison and top events are unknown. Version 1.1 uses a previously recorded real public wallet whose 59-record history is exhaustible within the bounded pagination budget and contains activity in both full periods.
 
 ## Run locally
 
@@ -41,3 +43,5 @@ Saving a schedule leaves it `PAUSED`. `Start / Resume Schedule` computes a fresh
 - No keys, wallet connection, signing, transactions, contracts, or spending.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) and [SKILL.md](SKILL.md).
+
+Public repository: https://github.com/shoupeorg/shoupeorg-pharos-weekly-digest-agent

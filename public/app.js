@@ -32,7 +32,7 @@ function render(digest) {
     link.href = `https://pharosscan.xyz/tx/${event.transactionHash}`; link.target = "_blank"; link.rel = "noopener noreferrer";
     article.append(element("span", "tag", `NOTABLE ${index + 1}`), element("h3", "", `${event.direction} · ${event.amount ?? "UNKNOWN"} ${event.symbol}`), element("p", "", `${event.from} → ${event.to}`), element("p", "", event.why), link, element("p", "", `Block ${event.blockNumber} · ${event.timestamp} · evidence ${event.observationIds.join(", ")}`)); events.append(article);
   });
-  $("#coverage").textContent = `${digest.coverage.status}: ${digest.coverage.note} Transport: ${digest.coverage.transport}. Pages: ${digest.coverage.pages}. Boundaries: ${JSON.stringify(digest.coverage.blockBoundaries)}.`;
+  $("#coverage").textContent = `${digest.coverage.status}: ${digest.coverage.note} Transport: ${digest.coverage.transport}. Pages: ${digest.coverage.pages}; rows ${digest.coverage.uniqueRows ?? digest.coverage.scannedRows ?? "UNKNOWN"}/${digest.coverage.totalReported ?? "UNKNOWN"}; observed ${digest.coverage.oldestObservedAt ?? "UNKNOWN"} → ${digest.coverage.newestObservedAt ?? "UNKNOWN"}. Boundaries: ${JSON.stringify(digest.coverage.blockBoundaries)}.`;
 }
 
 async function archive() {
@@ -47,7 +47,7 @@ async function state() {
   clearInterval(timer); if (subscription.status === "ACTIVE") timer = setInterval(state, 15000);
 }
 
-$("#example").onclick = () => { $("#wallet").value = "0x15ddce897d76ac39c188ade4d353711a60395315"; $("#label").value = "Verified public example [USER-SUPPLIED]"; status("Verified public example loaded. Choose explicit historical dates or use the completed-week default."); };
+$("#example").onclick = () => { $("#wallet").value = "0x197afc201b8d839288d7a7e9a03fb95669e3b0f3"; $("#label").value = "Coverage-verified public example [USER-SUPPLIED]"; status("Coverage-verified public example loaded. Choose explicit historical dates or use the completed-week default."); };
 $("#generate").onclick = async () => { try { status("Retrieving both intervals and resolving exact block boundaries…"); const body = form(), start = $("#start").value, end = $("#end").value; if (start && end) body.manual = { start: `${start}T00:00:00.000Z`, end: `${end}T00:00:00.000Z` }; const result = await api("/api/manual", { method: "POST", body: JSON.stringify(body) }); render(result.digest); status(`Published and retrievable: ${location.origin}${result.permalink}`); await archive(); } catch (error) { status(error.message); } };
 $("#save").onclick = async () => { try { const result = await api("/api/subscription", { method: "POST", body: JSON.stringify({ ...form(), id: subscriptionId }) }); subscriptionId = result.id; localStorage.setItem("pharos-digest-sub", result.id); await state(); status("Schedule saved PAUSED. Configuration controls the next computed due time."); } catch (error) { status(error.message); } };
 for (const [id, action] of [["start-schedule", "start"], ["pause", "pause"]]) $("#" + id).onclick = async () => { try { if (!subscriptionId) throw new Error("Save a schedule first."); await api(`/api/subscription/${subscriptionId}/${action}`, { method: "POST" }); await state(); status(action === "pause" ? "Schedule paused; history preserved." : "Schedule active; browser closure does not stop Cloudflare Cron."); } catch (error) { status(error.message); } };

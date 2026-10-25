@@ -1,0 +1,27 @@
+{
+  "version": "1.1",
+  "generatedAt": "2026-10-25T23:34:52.462Z",
+  "historicalEvidencePreserved": [
+    "live-manual-v1.json",
+    "live-scheduled-v1.json"
+  ],
+  "manual": {
+    "permalink": "/digest/e27f9046-eeae-4115-a948-a7b2a547288e",
+    "coverage": "COMPLETE",
+    "currentEvents": 1,
+    "previousEvents": 1,
+    "topEvents": 1
+  },
+  "scheduled": {
+    "permalink": "/digest/a5e8485d-cb09-4d4a-8b6d-34b70c726f07",
+    "dueAt": "2026-10-25T23:34:00.000Z",
+    "startedAt": "2026-10-25T23:34:25.013Z",
+    "completedAt": "2026-10-25T23:34:49.588Z",
+    "latenessMs": 25013,
+    "coverage": "COMPLETE",
+    "currentEvents": 1,
+    "previousEvents": 1,
+    "topEvents": 1
+  },
+  "transactionsPerformed": 0
+}
