@@ -1,6 +1,7 @@
 node_modules/
 .npm-cache/
 .wrangler/
+.wrangler-logs/
 .wrangler-log.txt/
 /worker.js
 .dev.vars
