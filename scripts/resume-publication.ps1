@@ -9,18 +9,29 @@ npx wrangler whoami
 if ($LASTEXITCODE -ne 0) { throw 'Cloudflare authentication is unavailable. Run npx wrangler login once, then rerun this resume script.' }
 
 Write-Host '==> Reuse or create exact D1 database'
-$Databases = npx wrangler d1 list --json | ConvertFrom-Json
+function Get-D1Databases {
+  $Raw = @(& npx wrangler d1 list --json 2>&1)
+  $ExitCode = $LASTEXITCODE
+  if ($ExitCode -ne 0) { throw "D1 list failed with exit code $ExitCode.`n$($Raw -join [Environment]::NewLine)" }
+  try { return (($Raw -join [Environment]::NewLine) | ConvertFrom-Json) }
+  catch { throw "D1 list succeeded but returned invalid JSON: $($_.Exception.Message)" }
+}
+$Databases = Get-D1Databases
 $Database = $Databases | Where-Object { $_.name -eq 'pharos-weekly-digest-agent' } | Select-Object -First 1
 if (-not $Database) {
-  $Created = npx wrangler d1 create pharos-weekly-digest-agent --json | ConvertFrom-Json
-  if ($Created.uuid) { $DatabaseId = [string]$Created.uuid } else { $DatabaseId = [string]$Created.database_id }
-} else {
-  if ($Database.uuid) { $DatabaseId = [string]$Database.uuid } else { $DatabaseId = [string]$Database.database_id }
+  $CreateOutput = @(& npx wrangler d1 create pharos-weekly-digest-agent 2>&1)
+  $CreateExitCode = $LASTEXITCODE
+  if ($CreateExitCode -ne 0) { throw "D1 create failed with exit code $CreateExitCode.`n$($CreateOutput -join [Environment]::NewLine)" }
+  $Databases = Get-D1Databases
+  $Database = $Databases | Where-Object { $_.name -eq 'pharos-weekly-digest-agent' } | Select-Object -First 1
+  if (-not $Database) { throw 'D1 create succeeded, but the exact database was absent from the subsequent D1 list.' }
 }
+if ($Database.uuid) { $DatabaseId = [string]$Database.uuid } else { $DatabaseId = [string]$Database.database_id }
 if ($DatabaseId -notmatch '^[0-9a-f-]{36}$') { throw "Unable to resolve D1 database ID from Wrangler JSON." }
 $Config = Get-Content -Raw -LiteralPath '.\wrangler.jsonc'
 $Config = $Config -replace '"database_id":"[^"]+"', ('"database_id":"' + $DatabaseId + '"')
-Set-Content -LiteralPath '.\wrangler.jsonc' -Value $Config -NoNewline
+$Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText((Join-Path $Project 'wrangler.jsonc'), $Config, $Utf8NoBom)
 
 Write-Host '==> Apply migration and deploy application'
 npx wrangler d1 migrations apply pharos-weekly-digest-agent --remote
