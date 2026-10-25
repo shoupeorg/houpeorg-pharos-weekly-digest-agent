@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "capturedAt": "2026-10-25T00:00:00.000Z",
+  "chain": { "name": "Pharos Pacific Mainnet", "chainId": 1672, "latestBlockObserved": 21243298, "nativeSymbol": "PROS", "rpc": "https://rpc.pharos.xyz" },
+  "inspectedTools": ["get_chain_info", "get_block_number", "get_block", "get_logs", "eth_call"],
+  "constraints": { "getLogsMaximumRange": 1000, "transactionsPerformed": 0 },
+  "note": "Foundation capability evidence. Production transports are named separately in every digest."
+}

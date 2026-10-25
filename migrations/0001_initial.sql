@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS subscriptions(id TEXT PRIMARY KEY, capability_hash TEXT NOT NULL, wallet TEXT NOT NULL, label TEXT NOT NULL, cadence TEXT NOT NULL, weekday INTEGER, utc_hour INTEGER NOT NULL, utc_minute INTEGER NOT NULL, status TEXT NOT NULL, next_due_at TEXT, last_due_at TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS subscriptions_due ON subscriptions(status,next_due_at);
+CREATE TABLE IF NOT EXISTS jobs(id TEXT PRIMARY KEY, subscription_id TEXT NOT NULL, idempotency_key TEXT NOT NULL UNIQUE, kind TEXT NOT NULL, period_start TEXT NOT NULL, period_end TEXT NOT NULL, comparison_start TEXT NOT NULL, status TEXT NOT NULL, due_at TEXT NOT NULL, started_at TEXT, completed_at TEXT, lease_until TEXT, error TEXT, created_at TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS jobs_status ON jobs(status,lease_until);
+CREATE TABLE IF NOT EXISTS digests(id TEXT PRIMARY KEY, subscription_id TEXT NOT NULL, job_id TEXT NOT NULL UNIQUE, digest_json TEXT NOT NULL, published_at TEXT NOT NULL, permalink TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1);
+CREATE INDEX IF NOT EXISTS digests_published ON digests(published_at DESC);
+CREATE TABLE IF NOT EXISTS deliveries(id TEXT PRIMARY KEY,subscription_id TEXT NOT NULL,job_id TEXT NOT NULL UNIQUE,digest_id TEXT NOT NULL,due_at TEXT NOT NULL,started_at TEXT NOT NULL,completed_at TEXT NOT NULL,published_at TEXT NOT NULL,lateness_ms INTEGER NOT NULL,permalink TEXT NOT NULL);
